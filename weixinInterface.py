@@ -6,7 +6,7 @@ import time
 import os
 import urllib2,json
 from lxml import etree
-
+import talk_api
 class WeixinInterface:
 
     def __init__(self):
@@ -50,7 +50,7 @@ class WeixinInterface:
               msg = talk_api.talk(content)
               return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
-              return self.render.reply_text(fromUser,toUser,int(time.time()), '这货还不够聪明，换句话聊天吧')
+              return self.render.reply_text(fromUser,toUser,int(time.time()), u'这货还不够聪明，换句话聊天吧')
         elif msgType == 'image':
           content = u"你发的什么东东，我咋看不懂啊"
         else:
