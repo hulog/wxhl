@@ -41,20 +41,21 @@ class WeixinInterface:
         msgType=xml.find("MsgType").text
         fromUser=xml.find("FromUserName").text
         toUser=xml.find("ToUserName").text
+        userid = fromuser[0:15]
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
           if(content == u"你好"):
             content = u"你要的情感助手正在开发中，请耐心等待"
           else:
             try:
-              msg = talk_api.talk(content)
+              msg = talk_api.talk(content,userid)
               return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
               return self.render.reply_text(fromUser,toUser,int(time.time()), u'这货还不够聪明，换句话聊天吧')
         elif msgType == 'voice':
             content = xml.find('Recognition').text
             try:
-                msg = talk_api.talk(content)
+                msg = talk_api.talk(content,userid)
                 return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
                 return self.render.reply_text(fromUser,toUser,int(time.time()), content + '你刚刚说的啥么也？我咋没听懂尼')
