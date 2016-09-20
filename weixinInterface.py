@@ -42,7 +42,7 @@ class WeixinInterface:
         toUser=xml.find("ToUserName").text
         if msgType == 'text':
           content=xml.find("Content").text#获得用户所输入的内容
-          if(content == "无聊"||"你好"):
+          if(content == u"你好"):
             content = u"你要的情感助手正在开发中，请耐心等待"
         elif msgType == 'image':
           content = u"你发的什么东东，我咋看不懂啊"
