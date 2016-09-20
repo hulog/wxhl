@@ -37,8 +37,15 @@ class WeixinInterface:
     def POST(self):
         str_xml = web.data() #获得post来的数据
         xml = etree.fromstring(str_xml)#进行XML解析
-        content=xml.find("Content").text#获得用户所输入的内容
         msgType=xml.find("MsgType").text
         fromUser=xml.find("FromUserName").text
         toUser=xml.find("ToUserName").text
-        return self.render.reply_text(fromUser,toUser,int(time.time()),u"我是你的小鹦鹉，您刚才说的是："+content+u"! 对不对呀？嘻嘻嘻")
+        if msgType == 'text':
+          content=xml.find("Content").text#获得用户所输入的内容
+          if content == u"无聊"|u"你好":
+            content = u"你要的情感助手正在开发中，请耐心等待"
+        elif msgType == 'image':
+          content = u"你发的什么东东，我咋看不懂啊"
+        else:
+          pass
+        return self.render.reply_text(fromUser,toUser,int(time.time()),content)
