@@ -41,7 +41,7 @@ class WeixinInterface:
         msgType=xml.find("MsgType").text
         fromUser=xml.find("FromUserName").text
         toUser=xml.find("ToUserName").text
-        userid = fromuser[0:15]
+        userid = fromUser[0:15]
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
           if(content == u"你好"):
