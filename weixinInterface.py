@@ -57,7 +57,7 @@ class WeixinInterface:
                 msg = takl_api.talk(content)
                 return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
-                return self.render.reply_text(fromUser,toUser,int(time.time()), content + '这货还不够聪明，换句话聊天吧')
+                return self.render.reply_text(fromUser,toUser,int(time.time()), content + '你刚刚说的啥么也？我咋没听懂尼')
         elif msgType == 'image':
           content = u"你发的什么东东，我咋看不懂啊"
         else:
