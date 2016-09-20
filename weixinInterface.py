@@ -47,7 +47,7 @@ class WeixinInterface:
             content = u"你要的情感助手正在开发中，请耐心等待"
           else:
             try:
-              msg = talk_api.talk(content, userid)
+              msg = talk_api.talk(content)
               return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
               return self.render.reply_text(fromUser,toUser,int(time.time()), '这货还不够聪明，换句话聊天吧')
