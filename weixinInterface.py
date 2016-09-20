@@ -51,6 +51,13 @@ class WeixinInterface:
               return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
               return self.render.reply_text(fromUser,toUser,int(time.time()), u'这货还不够聪明，换句话聊天吧')
+        elif msgType == 'voice':
+            content = xml.find('Recognition').text
+            try:
+                msg = takl_api.talk(content, userid)
+                return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
+            except:
+                return self.render.reply_text(fromUser,toUser,int(time.time()), content + '这货还不够聪明，换句话聊天吧')
         elif msgType == 'image':
           content = u"你发的什么东东，我咋看不懂啊"
         else:
