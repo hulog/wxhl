@@ -54,7 +54,7 @@ class WeixinInterface:
         elif msgType == 'voice':
             content = xml.find('Recognition').text
             try:
-                msg = takl_api.talk(content, userid)
+                msg = takl_api.talk(content)
                 return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
                 return self.render.reply_text(fromUser,toUser,int(time.time()), content + '这货还不够聪明，换句话聊天吧')
