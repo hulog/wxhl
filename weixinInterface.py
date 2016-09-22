@@ -45,7 +45,7 @@ class WeixinInterface:
         userid = fromUser[0:15]
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
-          if content[0:1] == u'm'):
+          if content[0:1] == u'm':
             recontent = u"md5正在开发中……"
           if(content == u"你好"):
             recontent = u"你要的情感助手正在开发中，请耐心等待"
