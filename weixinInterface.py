@@ -7,6 +7,7 @@ import os
 import urllib2,json
 from lxml import etree
 import talk_api
+import md5
 class WeixinInterface:
 
     def __init__(self):
@@ -44,8 +45,10 @@ class WeixinInterface:
         userid = fromUser[0:15]
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
+          if content[0:1] == u'm'):
+            recontent = u"md5正在开发中……"
           if(content == u"你好"):
-            content = u"你要的情感助手正在开发中，请耐心等待"
+            recontent = u"你要的情感助手正在开发中，请耐心等待"
           else:
             try:
               msg = talk_api.talk(content,userid)
@@ -58,9 +61,9 @@ class WeixinInterface:
                 msg = talk_api.talk(content,userid)
                 return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
             except:
-                return self.render.reply_text(fromUser,toUser,int(time.time()), content + '你刚刚说的啥么也？我咋没听懂尼')
+                return self.render.reply_text(fromUser,toUser,int(time.time()),u'你刚刚说的啥么也？我咋没听懂尼')
         elif msgType == 'image':
-          content = u"你发的什么东东，我咋看不懂啊"
+          recontent = u"你发的什么东东，我咋看不懂啊"
         else:
           pass
-        return self.render.reply_text(fromUser,toUser,int(time.time()),content)
+        return self.render.reply_text(fromUser,toUser,int(time.time()),recontent)
