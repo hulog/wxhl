@@ -4,6 +4,6 @@ $def with (toUser,fromUser,createTime,mediaId)
 <FromUserName><![CDATA[$fromUser]]></FromUserName>
 <CreateTime>$createTime</CreateTime>
 <MsgType><![CDATA[image]]></MsgType>
-<Image><MediaId><![CDATA[mediaId]]></Image>
+<Image><MediaId><![CDATA[$mediaId]]></Image>
 </xml>
 

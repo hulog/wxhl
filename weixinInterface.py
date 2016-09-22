@@ -67,6 +67,7 @@ class WeixinInterface:
             except:
                 return self.render.reply_text(fromUser,toUser,int(time.time()),u'你刚刚说的啥么也？我咋没听懂尼')
         elif msgType == 'image':
+          picUrl = xml.find('PicUrl').text
           mediaId = xml.find('MediaId').text
           return self.render.reply_image(fromUser,toUser,int(time.time()),mediaId)
         else:
