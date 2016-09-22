@@ -7,7 +7,6 @@ import os
 import urllib2,json
 from lxml import etree
 import talk_api
-import md5
 class WeixinInterface:
 
     def __init__(self):
@@ -46,7 +45,9 @@ class WeixinInterface:
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
           if content[0:1] == 'm':
-            recontent = u"md5正在开发中……"
+            str_for_md5 = content[1:]
+            str_for_resp = hashlib.md5().update(str_for_md5).hexdigest()
+            recontent = str_for_resp
           elif(content == u"你好"):
             recontent = u"你要的情感助手正在开发中，请耐心等待"
           else:
