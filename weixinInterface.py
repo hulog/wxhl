@@ -46,8 +46,11 @@ class WeixinInterface:
           content = xml.find("Content").text#获得用户所输入的内容
           if content[0:1] == 'm':
             str_for_md5 = content[1:]
-            str_for_resp = hashlib.md5().update(str_for_md5).hexdigest()
-            recontent = str_for_resp
+            md5 = hashlib.md5()
+            md5.update(str_for_md5)
+            recontent = md5.hexdigest()
+            #str_for_resp = hashlib.md5().update(str_for_md5).hexdigest()
+            #recontent = str_for_resp
           elif(content == u"你好"):
             recontent = u"你要的情感助手正在开发中，请耐心等待"
           else:
