@@ -74,11 +74,11 @@ class WeixinInterface:
         elif msgType == 'event':
           exact_event = xml.find('Event').text
           if exact_event == 'subscribe':
-            #recontent == u'你好，欢迎关注我的微信公众号，目前暂提供一下功能:\n1.机器人聊天\n2.md5加密m****\n3.更多请回复“功能”'
+            recontent = u'你好，欢迎关注我的微信公众号，目前暂提供一下功能:\n1.机器人聊天\n2.md5加密m****\n3.更多请回复“功能”'
             
-            recontent == u'你好，欢迎关注我的微信公众号，目前暂提供一下功能: 1.机器人聊天 2.md5加密m**** 3.更多请回复“功能”'
+            #recontent = u'你好，欢迎关注我的微信公众号，目前暂提供一下功能: 1.机器人聊天 2.md5加密m**** 3.更多请回复“功能”'
           if exact_event == 'unsubscribe':
-            recontent == u'拜拜'
+            recontent = u'拜拜'
         else:
           pass
         return self.render.reply_text(fromUser,toUser,int(time.time()),recontent)
