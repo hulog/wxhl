@@ -49,7 +49,7 @@ class WeixinInterface:
             str_for_md5 = content[1:]
             md5 = hashlib.md5()
             md5.update(str_for_md5)
-            recontent = 'md5加密后:\n'+md5.hexdigest()[11:19]
+            recontent = md5.hexdigest()[11:19].toUpperCase()
             #str_for_resp = hashlib.md5().update(str_for_md5).hexdigest()
             #recontent = str_for_resp
 
