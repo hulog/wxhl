@@ -8,7 +8,8 @@ sae.add_vendor_dir('vendor')
 from weixinInterface import WeixinInterface
 
 urls = (
-'/weixin','WeixinInterface'
+'/weixin','WeixinInterface',
+'/creat','Menu'
 )
 
 app_root = os.path.dirname(__file__)
