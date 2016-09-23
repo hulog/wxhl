@@ -68,13 +68,15 @@ class WeixinInterface:
                 return self.render.reply_text(fromUser,toUser,int(time.time()),u'你刚刚说的啥么也？我咋没听懂尼')
         elif msgType == 'image':
           picUrl = xml.find('PicUrl').text #picUrl 暂未使用
-          print 'picurl'+picUrl
+          # print 'picurl'+picUrl
           mediaId = xml.find('MediaId').text
           return self.render.reply_image(fromUser,toUser,int(time.time()),mediaId)
         elif msgType == 'event':
           exact_event = xml.find('Event').text
           if exact_event == 'subscribe':
             recontent == u'你好，欢迎关注我的微信公众号，目前暂提供一下功能:\n1.机器人聊天\n2.md5加密m****\n3.更多请回复“功能”'
+          if exact_event == 'unsubscribe':
+            recontent == u'拜拜'
         else:
           pass
         return self.render.reply_text(fromUser,toUser,int(time.time()),recontent)
