@@ -7,6 +7,8 @@ import os
 import urllib2,json
 from lxml import etree
 import talk_api
+import requests
+import re
 class WeixinInterface:
 
     def __init__(self):
