@@ -9,7 +9,7 @@ $def with(toUser,fromUser,dyxx,num)
 	$for m in range(num):      
         <item>
             <Title>$dyxx[m][2]
-        (豆瓣:$dyxx[m][3] 票房：$dyxx[m][4]亿)</Title>
+        (豆瓣评分:$dyxx[m][3] 票房:$dyxx[m][4]亿)</Title>
         <Description><![CDATA[$dyxx[m][2]]]></Description>
         <PicUrl><![CDATA[$dyxx[m][1]]]></PicUrl>
         <Url><![CDATA[$dyxx[m][0]]]></Url>

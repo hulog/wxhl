@@ -45,50 +45,58 @@ class WeixinInterface:
         fromUser=xml.find("FromUserName").text
         toUser=xml.find("ToUserName").text
         userid = fromUser[0:15]
+        # 请求内容为文本
         if msgType == 'text':
           content = xml.find("Content").text#获得用户所输入的内容
+
           # md5
           if content[0:1] == 'm':
             str_for_md5 = content[1:]
             md5 = hashlib.md5()
             md5.update(str_for_md5)
             recontent = md5.hexdigest()[11:19].upper()
-            #str_for_resp = hashlib.md5().update(str_for_md5).hexdigest()
-            #recontent = str_for_resp
 
           # openid
           elif(content == 'o'):
             recontent = '您的OpenId为:\n'+fromUser
+
+          # 查询热评电影
           elif content == u'电影':
             douban = Douban()
             (INFOS,num) = douban.getItems()
             return self.render.reply_morepic(fromUser,toUser,INFOS,num)
+
+          # 调用机器人
           else:
             try:
               msg = talk_api.talk(content,userid)
-              return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
+              recontent = msg
             except:
-              return self.render.reply_text(fromUser,toUser,int(time.time()), u'这货还不够聪明，换句话聊天吧')
+              recontent = u'我有点懵逼，你说人话好不咯'
+        # 请求内容为语音
         elif msgType == 'voice':
             content = xml.find('Recognition').text
             try:
                 msg = talk_api.talk(content,userid)
-                return self.render.reply_text(fromUser,toUser,int(time.time()), msg)
+                recontent = msg
             except:
-                return self.render.reply_text(fromUser,toUser,int(time.time()),u'你刚刚说的啥么也？我咋没听懂尼')
+                recontent = u'买个iphone吧，你发的语音我听不清楚啦～'
+        # 请求内容为图片
         elif msgType == 'image':
           picUrl = xml.find('PicUrl').text #picUrl 暂未使用
           # print 'picurl'+picUrl
           mediaId = xml.find('MediaId').text
           return self.render.reply_image(fromUser,toUser,int(time.time()),mediaId)
+        # 请求内容为事件
         elif msgType == 'event':
           exact_event = xml.find('Event').text
+
           if exact_event == 'subscribe':
             recontent = u'你好，欢迎关注我的微信公众号，目前暂提供一下功能:\n1.机器人聊天\n2.md5加密:m****\n3.查看openId:o\n4.查看热评电影:电影\n5.更多请回复“功能”'
             
-            #recontent = u'你好，欢迎关注我的微信公众号，目前暂提供一下功能: 1.机器人聊天 2.md5加密m**** 3.更多请回复“功能”'
           if exact_event == 'unsubscribe':
             recontent = u'拜拜'
         else:
           pass
+
         return self.render.reply_text(fromUser,toUser,int(time.time()),recontent)
