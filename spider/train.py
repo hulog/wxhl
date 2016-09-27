@@ -42,13 +42,15 @@ class Train:
 
     #对筛选参数进行处理
     sx = list(tra_type.upper())
-    recontent = from_station+'>>>>开往>>>>'+to_station
-    #recontent += '\n【共计】 '+str(len(tra_lists))+' 趟车\n'
-    recontent += u'筛选后如下:\n'
+    recontent += u'查询结果筛选后如下:\n'
     recontent += u'*******************\n'
     recontent += u'车次|发车|历时|余票\n'
     recontent += u'*******************'
+    count = 0
     for tra_list in tra_lists:
       if tra_list['station_train_code'][0] in sx:
         recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
+        count = count + 1
+        if count % 5 == 0:
+          recontent += u'\n-------------------'
     return recontent
