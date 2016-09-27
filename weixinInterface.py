@@ -71,16 +71,17 @@ class WeixinInterface:
           # 查询火车余票
           elif content[:3] == 'hcp':
             train = Train()
-            detail = content.split(' ')
+            c_utf8 = content.encode('utf-8')
+            detail = c_utf8.split(' ')
             err_reply = u'你输入的格式有误，请按照格式输入:\nhcp 出发站 终点站 时间 车型\n如：hcp 上海 无锡 1001 gkd'
             if(len(detail) != 5):
-              recontent = err_reply+'detail'
+              recontent = err_reply
             else:
               try:
                 [f,t,d,l] = detail[1:5]
                 recontent = train.getTrains(f,t,d,l)
               except:
-                recontent = err_reply+'except'
+                recontent = err_reply
           # 调用机器人
           else:
             try:
