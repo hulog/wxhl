@@ -19,7 +19,7 @@ class Train:
     year = str(time.localtime()[0])
     month = time_str[:2]
     day = time_str[2:]
-    return  year+'-'+month+'-'+day$
+    return year+'-'+month+'-'+day
 
   def getTrains(self,from_station,to_station,monthDay,tra_type):
 
