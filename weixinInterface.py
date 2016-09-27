@@ -10,6 +10,7 @@ import talk_api
 import requests
 import re
 from spider.douban import Douban
+from spider.train import Train
 class WeixinInterface:
 
     def __init__(self):
@@ -47,6 +48,7 @@ class WeixinInterface:
         userid = fromUser[0:15]
         # 请求内容为文本
         if msgType == 'text':
+          functions = {'1':'将需要加密的字符串前加m，例如对"sae3"加密，请输入msae3'}
           content = xml.find("Content").text#获得用户所输入的内容
 
           # md5
@@ -66,6 +68,14 @@ class WeixinInterface:
             (INFOS,num) = douban.getItems()
             return self.render.reply_morepic(fromUser,toUser,INFOS,num)
 
+          elif content[:3] == 'hcp':
+            train = Train()
+            detail = content.split(' ')
+            try:
+              [f,t,d,l] = detail[1:5]
+              recontent = train.getTrains()
+            except:
+              recontent = u'你输入的格式有误，请按照格式输入:\nhcp 出发站 终点站 时间 车型\n如：hcp 上海 无锡 1001 gkd'
           # 调用机器人
           else:
             try:
