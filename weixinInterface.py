@@ -71,11 +71,15 @@ class WeixinInterface:
           elif content[:3] == 'hcp':
             train = Train()
             detail = content.split(' ')
-            try:
-              [f,t,d,l] = detail[1:5]
-              recontent = train.getTrains()
-            except:
-              recontent = u'你输入的格式有误，请按照格式输入:\nhcp 出发站 终点站 时间 车型\n如：hcp 上海 无锡 1001 gkd'
+              err_reply = u'你输入的格式有误，请按照格式输入:\nhcp 出发站 终点站 时间 车型\n如：hcp 上海 无锡 1001 gkd'
+            if(len(detail) != 5):
+              recontent = err_reply
+            else:
+              try:
+                [f,t,d,l] = detail[1:5]
+                recontent = train.getTrains(f,t,d,l)
+              except:
+                recontent = err_reply
           # 调用机器人
           else:
             try:
