@@ -68,18 +68,19 @@ class WeixinInterface:
             (INFOS,num) = douban.getItems()
             return self.render.reply_morepic(fromUser,toUser,INFOS,num)
 
+          # 查询火车余票
           elif content[:3] == 'hcp':
             train = Train()
             detail = content.split(' ')
             err_reply = u'你输入的格式有误，请按照格式输入:\nhcp 出发站 终点站 时间 车型\n如：hcp 上海 无锡 1001 gkd'
             if(len(detail) != 5):
-              recontent = err_reply+'detail不等于5'
+              recontent = err_reply+'detail'
             else:
               try:
                 [f,t,d,l] = detail[1:5]
                 recontent = train.getTrains(f,t,d,l)
               except:
-                recontent = err_reply+'异常出现'
+                recontent = err_reply+'except'
           # 调用机器人
           else:
             try:
