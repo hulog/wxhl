@@ -4,11 +4,11 @@ import json
 import requests
 from spider.douban import Douban
 
-class Index:
+class :
   def get(self):
-    douban = Douban()
-    return douban.getItems()
+    url='https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2016-09-27&leftTicketDTO.from_station=WXH&leftTicketDTO.to_station=SHH&purpose_codes=ADULT'
+    s=requests.get(url)
+    return s.text
 if __name__ =='__main__':
   i = Index()
-  print 'time-->%s'% int(time.time())
-  print i.get()[0][0]
+  print i.get()
