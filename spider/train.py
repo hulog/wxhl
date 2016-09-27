@@ -21,7 +21,7 @@ class Train:
     day = time_str[2:]
     return year+'-'+month+'-'+day
 
-  def getTrains(self,from_station,to_station,monthDay,tra_type):
+  def getTrains(self,from_station,to_station,monthDay,tra_type='gdkctz'):
 
     #获取站名和代码的对照表
     stationlist_url = 'https://kyfw.12306.cn/otn/resources/js/framework/station_name.js'
@@ -48,9 +48,12 @@ class Train:
     recontent += u'*******************'
     count = 0
     for tra_list in tra_lists:
-      if tra_list['station_train_code'][0] in sx:
-        recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
-        count = count + 1
-        if count % 5 == 0:
-          recontent += u'\n-------------------'
+      f_c = tra_list['from_station_telecode']
+      t_c = tra_list['to_station_telecode']
+      if f_c == f_code and t_c == t_code :
+        if tra_list['station_train_code'][0] in sx:
+          recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
+          count = count + 1
+          if count % 5 == 0:
+            recontent += u'\n-------------------'
     return recontent
