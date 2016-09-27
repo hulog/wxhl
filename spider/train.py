@@ -53,9 +53,9 @@ class Train:
       if f_c == f_code and t_c == t_code :
         t_type = tra_list['station_train_code'][0]
         if t_type in sx:
-          if t_type in ['G','D','C']
+          if t_type in ['G','D','C']:
             recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
-          else: 
+          else:
             recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['yz_num']
           count = count + 1
           if count % 5 == 0:
