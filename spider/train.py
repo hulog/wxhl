@@ -51,8 +51,12 @@ class Train:
       f_c = tra_list['from_station_telecode']
       t_c = tra_list['to_station_telecode']
       if f_c == f_code and t_c == t_code :
-        if tra_list['station_train_code'][0] in sx:
-          recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
+        t_type = tra_list['station_train_code'][0]
+        if t_type in sx:
+          if t_type in ['G','D','C']
+            recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['ze_num']
+          else: 
+            recontent += '\n'+tra_list['station_train_code']+'|'+tra_list['start_time']+'|'+tra_list['lishi']+'|'+tra_list['yz_num']
           count = count + 1
           if count % 5 == 0:
             recontent += u'\n-------------------'
