@@ -42,7 +42,7 @@ class Train:
 
     #对筛选参数进行处理
     sx = list(tra_type.upper())
-    recontent += u'查询结果筛选后如下:\n'
+    recontent = u'查询结果筛选后如下:\n'
     recontent += u'*******************\n'
     recontent += u'车次|发车|历时|余票\n'
     recontent += u'*******************'
