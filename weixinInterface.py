@@ -29,10 +29,10 @@ class WeixinInterface:
         #字典序排序
         list=[token,timestamp,nonce]
         list.sort()
+        #sha1加密算法        
         sha1=hashlib.sha1()
         map(sha1.update,list)
         hashcode=sha1.hexdigest()
-        #sha1加密算法        
 
         #如果是来自微信的请求，则回复echostr
         if hashcode == signature:

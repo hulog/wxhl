@@ -6,10 +6,8 @@ import web
 sae.add_vendor_dir('vendor')
 
 from weixinInterface import WeixinInterface
-from index import Index
 
 urls = (
-'/','Index',
 '/weixin','WeixinInterface',
 )
 
